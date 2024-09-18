@@ -13,12 +13,12 @@ SECRET_KEY = env.str("SECRET_KEY")
 # DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
+        "ENGINE": "django.db.backends.sqlite3",
         "NAME": "days_db",
-        "USER": "days",
-        "PASSWORD": "days",
-        "HOST": os.environ["DB_HOST"],
-        "PORT": "3306",
+        # "USER": "days",
+        # "PASSWORD": "days",
+        # "HOST": os.environ["DB_HOST"],
+        # "PORT": "3306",
     }
 }
 ROOT_URLCONF = "days_project.urls"
