@@ -87,4 +87,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-ALLOWED_HOSTS = []
+_hosts = env.str("ALLOWED_HOSTS")
+ALLOWED_HOSTS = _hosts.split(";") if _hosts else []
