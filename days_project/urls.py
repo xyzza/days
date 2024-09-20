@@ -27,9 +27,9 @@ from days_project.profile.views import ProfileListView, ProfileManagerView
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Snippets API",
+        title="Days API",
         default_version="v1",
-        description="Test description",
+        description="Days is a API for counting days",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="contact@snippets.local"),
         license=openapi.License(name="BSD License"),
