@@ -142,3 +142,4 @@ docker-compose.override.yml
 
 dbdata
 .idea
+days_db

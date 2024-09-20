@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 from environs import Env
@@ -30,6 +29,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # custom apps
+    "days_project.profile",
+    # 3rd party apps
+    "rest_framework",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
@@ -63,9 +67,9 @@ WSGI_APPLICATION = "days_project.wsgi.application"
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    # },
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
     # {
     #     "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     # },
@@ -76,6 +80,13 @@ AUTH_PASSWORD_VALIDATORS = [
     #     "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     # },
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+}
 
 # Internationalization
 LANGUAGE_CODE = "en-us"
