@@ -19,9 +19,10 @@ from django.contrib import admin
 from django.urls import path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
-from rest_framework import permissions
+from rest_framework import authentication, permissions
 
-from days_project.profile.views import ProfileListView, ProfileManagerView
+from days_project.stay.views import StayListView, StayManagerView
+from days_project.user.views import UserListView, UserManagerView
 
 ...
 
@@ -35,15 +36,18 @@ schema_view = get_schema_view(
         license=openapi.License(name="BSD License"),
     ),
     public=True,
-    permission_classes=(permissions.AllowAny,),
+    permission_classes=(permissions.IsAuthenticatedOrReadOnly,),
+    authentication_classes=(authentication.TokenAuthentication,),
 )
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     # API path
-    path("api/v1/profile", ProfileListView.as_view()),
-    path("api/v1/profile/<str:uuid>", ProfileManagerView.as_view()),
+    path("api/v1/user", UserListView.as_view()),
+    path("api/v1/user/<str:uuid>", UserManagerView.as_view()),
+    path("api/v1/stay", StayListView.as_view()),
+    path("api/v1/stay", StayManagerView.as_view()),
     # docs
     path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
 ]
