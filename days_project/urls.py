@@ -15,6 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+import os
+
 from django.contrib import admin
 from django.urls import path
 from drf_yasg import openapi
@@ -35,6 +37,7 @@ schema_view = get_schema_view(
         contact=openapi.Contact(email="contact@snippets.local"),
         license=openapi.License(name="BSD License"),
     ),
+    url=os.environ.get("SWAGGER_HOST_URL", None),
     public=True,
     permission_classes=(permissions.IsAuthenticatedOrReadOnly,),
     authentication_classes=(authentication.TokenAuthentication,),
