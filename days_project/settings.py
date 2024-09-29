@@ -23,16 +23,19 @@ DATABASES = {
 ROOT_URLCONF = "days_project.urls"
 # apps
 INSTALLED_APPS = [
+    # project apps
+    "days_project.user",
+    "days_project.stay",
+    # django apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # custom apps
-    "days_project.profile",
     # 3rd party apps
     "rest_framework",
+    "rest_framework.authtoken",
     "drf_yasg",
 ]
 
@@ -64,7 +67,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "days_project.wsgi.application"
 
-
+AUTH_USER_MODEL = "user.CustomUserModel"
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -83,9 +86,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.BasicAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ],
+}
+
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "DRF Token": {"type": "apiKey", "name": "Authorization", "in": "header"}
+    }
 }
 
 # Internationalization
