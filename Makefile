@@ -31,6 +31,9 @@ migrate:
 downgrade:
 	@docker compose run --rm build_src downgrade "$(name)"
 
+su:
+	@docker compose run --rm build_src createsuperuser "$(login)"
+
 lint:
 	@docker compose run --rm build_src analyze
 
