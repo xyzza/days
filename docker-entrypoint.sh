@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 set -e
+EMAIL="$2"
 
 case "$1" in
     api-dev)
@@ -36,6 +37,11 @@ case "$1" in
     downgrade)
         shift
         exec python manage.py migrate "$@" zero
+        ;;
+    createsuperuser)
+        # TODO: remove after development
+        python manage.py createsuperuser --email "$EMAIL" --noinput
+        python manage.py drf_create_token "$EMAIL" | tail -1
         ;;
     format)
         echo "pautoflake..."
