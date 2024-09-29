@@ -23,6 +23,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import authentication, permissions
 
+from days_project.core.views import CountryDetailView, CountryListView
 from days_project.stay.views import StayListView, StayManagerView
 from days_project.user.views import UserListView, UserManagerView
 
@@ -51,6 +52,9 @@ urlpatterns = [
     path("api/v1/user/<str:uuid>", UserManagerView.as_view()),
     path("api/v1/stay", StayListView.as_view()),
     path("api/v1/stay", StayManagerView.as_view()),
+    # core dicts
+    path("api/v1/country", CountryListView.as_view()),
+    path("api/v1/country/<str:code>", CountryDetailView.as_view()),
     # docs
     path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
 ]
